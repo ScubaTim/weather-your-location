@@ -5,13 +5,14 @@ import './WeatherDisplay.scss';
 const WeatherDisplay = (props) => {
     return (
         <div className="main-display">
-            <div className="mt-3 mb-4 pb-1 mx-4">
+            <div className="my-1 pb-2 mx-4">
                 <Row>
                     <Col>
                         <h1 className="display-font">Current Weather</h1>
+                        <p className="small-text text-center">Longitude: Long  Latitude: Lat</p>
                     </Col>
                 </Row>
-                <Row className="text-center my-3">
+                <Row className="text-center mt-3 mb-2">
                     <Col>
                         <h5 className="display-font light-text">It is currently raining outside.</h5>
                     </Col>
