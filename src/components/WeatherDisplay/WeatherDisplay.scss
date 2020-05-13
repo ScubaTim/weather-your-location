@@ -1,19 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@800&display=swap');
 
-$black: #b5b5b5;
+$darkgray: #b5b5b5;
+$black: #585d5f;
 $blue: #007bff;
 
 h1 {
+    text-align: center;
     color: $blue;
-    font-family: 'Kanit', sans-serif;
     font-size: 3.15rem;
+}
+
+.display-font {
+    font-family: 'Kanit', sans-serif;
+}
+
+.light-text {
+    color: $black;
 }
 
 .main-display {
     background-color: rgb(255, 255, 255);
     width: 480px;
     margin: 12vh auto;
-    border: 3px solid $black;
+    border: 3px solid $darkgray;
     border-radius: 18px;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.08);
 }
