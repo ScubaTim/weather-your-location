@@ -1,11 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@800&display=swap');
+
+$black: #b5b5b5;
+$blue: #007bff;
+
 h1 {
-    color: rgb(0, 220, 0);
+    color: $blue;
+    font-family: 'Kanit', sans-serif;
+    font-size: 3.15rem;
 }
 
 .main-display {
-    width: 380px;
-    margin: 25vh auto;
-    padding: 1rem;
-    border: 3px solid white;
+    background-color: rgb(255, 255, 255);
+    width: 480px;
+    margin: 12vh auto;
+    border: 3px solid $black;
     border-radius: 18px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.08);
 }
