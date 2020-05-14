@@ -3,13 +3,15 @@ import { Row, Col, Table, Button } from 'reactstrap';
 import './WeatherDisplay.scss';
 
 const WeatherDisplay = (props) => {
+    console.log(props);
     return (
         <div className="main-display">
             <div className="my-1 pb-2 mx-4">
                 <Row>
                     <Col>
                         <h1 className="display-font">Current Weather</h1>
-                        <p className="small-text text-center">Longitude: Long  Latitude: Lat</p>
+                        <p className="small-text text-center">For:</p>
+                        <p className="small-text text-center">Longitude: {props.lon}  Latitude: {props.lat} </p>
                     </Col>
                 </Row>
                 <Row className="text-center mt-3 mb-2">

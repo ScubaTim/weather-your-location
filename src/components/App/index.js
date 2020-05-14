@@ -3,18 +3,38 @@ import '../../apis/geolocation';
 import './App.scss';
 import { Row, Col } from 'reactstrap';
 import WeatherDisplay from '../WeatherDisplay';
-import { getLocation } from '../../apis/geolocation/index';
 
 class App extends Component {
-    componentDidMount() {
-        getLocation()
+    state = {
+        lat: null,
+        lon: null
     }
+
+    componentDidMount() {
+        const getLocation = async () => {
+            if ('geolocation' in navigator) {
+                await navigator.geolocation.getCurrentPosition((position) => {
+                    this.setState({ lat: position.coords.latitude, lon: position.coords.longitude });
+                });
+            } else {
+                await console.log("Geolocation Failed. This usually means access was denied or HTTPS isn't running.");
+            }
+        }
+        getLocation();
+    }
+
+
+
+
     render() {
         return (
             <div>
                 <Row>
                     <Col>
-                        <WeatherDisplay />
+                        <WeatherDisplay
+                            lat={this.state.lat}
+                            lon={this.state.lon}
+                        />
                     </Col>
                 </Row>
             </div>
