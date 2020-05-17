@@ -3,7 +3,6 @@ import { Row, Col, Table, Button } from 'reactstrap';
 import './WeatherDisplay.scss';
 
 const WeatherDisplay = (props) => {
-    console.log(props);
     return (
         <div className="main-display">
             <div className="my-1 pb-2 mx-4">
@@ -39,7 +38,12 @@ const WeatherDisplay = (props) => {
                 </Row>
                 <Row className="mx-2 mt-3 mb-2">
                     <Col>
-                        <Button className="btn p-2" color="primary" block >Get Weather</Button>
+                        <Button
+                            onClick={props.handleClick}
+                            className="btn p-2"
+                            color="primary"
+                            block
+                        >Get Weather</Button>
                     </Col>
                 </Row>
             </div>
