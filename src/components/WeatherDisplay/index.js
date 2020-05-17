@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Table } from 'reactstrap';
+import { Row, Col, Table, Button } from 'reactstrap';
 import './WeatherDisplay.scss';
 
 const WeatherDisplay = (props) => {
@@ -25,7 +25,7 @@ const WeatherDisplay = (props) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><strong>Temperature:</strong> 90&#176;F</td>
+                                    <td><strong>Temperature:</strong> {props.temp}&#176;F</td>
                                     <td><strong>High:</strong> 90&#176;F</td>
                                 </tr>
                                 <tr>
@@ -34,6 +34,13 @@ const WeatherDisplay = (props) => {
                                 </tr>
                             </tbody>
                         </Table>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="text-center">
+                        <Button
+                            onClick={props.onClick}
+                        >Get Weather</Button>
                     </Col>
                 </Row>
             </div>
