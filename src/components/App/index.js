@@ -6,52 +6,48 @@ import WeatherDisplay from '../WeatherDisplay';
 class App extends Component {
     state = {
         lat: null,
-        lon: null
+        lon: null,
+        temp: null,
+        highTemp: null,
+        lowTemp: null,
+        percip: null
     }
 
     componentDidMount() {
-        const getLocation = () => {
-            if ('geolocation' in navigator) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    this.setState({ lat: position.coords.latitude, lon: position.coords.longitude });
-                });
-            } else {
-                alert("Geolocation Failed. This usually means access was denied or HTTPS isn't running.");
-            }
-        }
-        getLocation();
-
-        /*  ////Sadness////
-        const getWeather = async () => {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat={${this.state.lat}}&lon={${this.state.lon}}&appid={5898622079e2a6f63e6739d881a756b4}`);
-            const weather = await response.url;
-            console.log(weather);
-        }
-        getWeather()
-            .catch(error => {
-                console.log("There was an error:", error);
-            });
-        */
+        window.navigator.geolocation.getCurrentPosition(
+            position => this.setState({ lat: position.coords.latitude, lon: position.coords.longitude }),
+        );
     }
 
-    handleClick = () => {
-        console.log('button clicked');
+    getWeather = async () => {
+        const response = (await fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&appid=fdca481f9e858844aede00aa6a7749c2`).catch(err => console.log(err)));
+        const weather = response.json()
+        console.log(weather);
+    }
+
+    renderContent = () => {
+        if (this.state.lon && this.state.lat) {
+            this.getWeather();
+            return (
+                <div>
+                    <Row>
+                        <Col>
+                            <WeatherDisplay
+                                lat={this.state.lat}
+                                lon={this.state.lon}
+                                handleClick={this.handleClick}
+                            />
+                        </Col>
+                    </Row>
+                </div>
+            )
+        } else {
+            return (<h1 className="text-center">Acquiring Device Coordinates</h1>)
+        }
     }
 
     render() {
-        return (
-            <div>
-                <Row>
-                    <Col>
-                        <WeatherDisplay
-                            lat={this.state.lat}
-                            lon={this.state.lon}
-                            handleClick={this.handleClick}
-                        />
-                    </Col>
-                </Row>
-            </div>
-        )
+        return this.renderContent();
     }
 };
 

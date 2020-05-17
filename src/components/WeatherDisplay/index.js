@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Table, Button } from 'reactstrap';
+import { Row, Col, Table } from 'reactstrap';
 import './WeatherDisplay.scss';
 
 const WeatherDisplay = (props) => {
@@ -34,16 +34,6 @@ const WeatherDisplay = (props) => {
                                 </tr>
                             </tbody>
                         </Table>
-                    </Col>
-                </Row>
-                <Row className="mx-2 mt-3 mb-2">
-                    <Col>
-                        <Button
-                            onClick={props.handleClick}
-                            className="btn p-2"
-                            color="primary"
-                            block
-                        >Get Weather</Button>
                     </Col>
                 </Row>
             </div>
