@@ -12,7 +12,11 @@ class App extends Component {
         highTemp: null,
         lowTemp: null,
         humidity: null,
-        message: ''
+        windSpeed: null,
+        windDirection: null,
+        city: '',
+        message: '',
+        icon: ''
     }
 
     getLocation = () => {
@@ -25,12 +29,26 @@ class App extends Component {
         if (this.state.lat) {
             const response = await fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&appid=0317b02bce728aa1f3b87d5d6ad88a5d`).catch(err => console.log(err));
             const weather = await response.json()
-            const tempInF = Math.floor(weather.main.temp * 9 / 5 - 459.67);
-            const maxInF = Math.floor(weather.main.temp_max * 9 / 5 - 459.67);
-            const minInF = Math.floor(weather.main.temp_min * 9 / 5 - 459.67);
+            const tempInF = Math.round(weather.main.temp * 9 / 5 - 459.67);
+            const maxInF = Math.round(weather.main.temp_max * 9 / 5 - 459.67);
+            const minInF = Math.round(weather.main.temp_min * 9 / 5 - 459.67);
             const humidity = weather.main.humidity;
             const message = weather.weather[0].description.toUpperCase()
-            this.setState({ temp: tempInF, highTemp: maxInF, lowTemp: minInF, humidity: humidity, message: message })
+            const windSpeed = Math.round(weather.wind.speed * 2.236936);
+            const windDirection = weather.wind.deg
+            const city = weather.name
+            const icon = weather.weather[0].icon
+            this.setState({
+                temp: tempInF,
+                highTemp: maxInF,
+                lowTemp: minInF,
+                humidity: humidity,
+                windSpeed: windSpeed,
+                windDirection: windDirection,
+                message: message,
+                city: city,
+                icon: icon
+            });
         }
     }
 
@@ -86,7 +104,11 @@ class App extends Component {
                                 highTemp={this.state.highTemp}
                                 lowTemp={this.state.lowTemp}
                                 humidity={this.state.humidity}
+                                windSpeed={this.state.windSpeed}
+                                windDirection={this.state.windDirection}
                                 message={this.state.message}
+                                city={this.state.city}
+                                icon={this.state.icon}
                             />
                         </Col>
                     </Row>
