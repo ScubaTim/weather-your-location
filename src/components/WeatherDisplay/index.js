@@ -6,36 +6,38 @@ const WeatherDisplay = (props) => {
     console.log(props)
     return (
         <div className="main-display">
-            <div className="mx-4">
+            <div>
                 <Row>
-                    <Col className="text-center">
+                    <Col className="text-center mb-2">
                         <h1 className="display-font">Current Weather</h1>
-                        <strong>In {props.city}</strong>
                         <p className="small-text">Longitude: {props.lon}  Latitude: {props.lat} </p>
-                    </Col>
-                </Row>
-                <Row className="text-center my-4">
-                    <Col>
-                        <img src={`https://openweathermap.org/img/wn/${props.icon}@2x.png`} alt="weather icon"></img>
-                        {props.message}
+                        <strong>In {props.city}</strong>
                     </Col>
                 </Row>
                 <Row>
-                    <Col className="ml-3">
-                        <Table className="ml-3" size="sm" borderless>
+                    <Col>
+                        <div className="center">
+                            <img src={`https://openweathermap.org/img/wn/${props.icon}@2x.png`} alt="weather icon"></img>
+                            <strong>{props.message}</strong>
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Table className="ml-4 pl-1" size="sm" borderless>
                             <thead>
                             </thead>
-                            <tbody className="testborder">
+                            <tbody>
                                 <tr>
-                                    <td><strong>Temperature:</strong> {props.temp}&#176;F</td>
-                                    <td><strong>High:</strong> {props.highTemp}&#176;F</td>
+                                    <td><strong>Temperature:</strong> {props.temp}&#176; F</td>
+                                    <td><strong>Feels Like:</strong> {props.feelsLike}&#176; F</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Humidity:</strong> {props.humidity}%</td>
-                                    <td><strong>Low:</strong> {props.lowTemp}&#176;F</td>
+                                    <td><strong>Pressure:</strong> {props.pressure} hPa</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Wind Speed:</strong> {props.windSpeed}mph</td>
+                                    <td><strong>Wind Speed:</strong> {props.windSpeed} mph</td>
                                     <td><strong>Direction:</strong> {props.windDirection}&#176;</td>
                                 </tr>
                             </tbody>

@@ -9,8 +9,8 @@ class App extends Component {
         lat: null,
         lon: null,
         temp: null,
-        highTemp: null,
-        lowTemp: null,
+        feelsLike: null,
+        pressure: null,
         humidity: null,
         windSpeed: null,
         windDirection: null,
@@ -30,18 +30,19 @@ class App extends Component {
             const response = await fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&appid=0317b02bce728aa1f3b87d5d6ad88a5d`).catch(err => console.log(err));
             const weather = await response.json()
             const tempInF = Math.round(weather.main.temp * 9 / 5 - 459.67);
-            const maxInF = Math.round(weather.main.temp_max * 9 / 5 - 459.67);
-            const minInF = Math.round(weather.main.temp_min * 9 / 5 - 459.67);
+            const feelsLike = Math.round(weather.main.feels_like * 9 / 5 - 459.67);
+            const pressure = weather.main.pressure;
             const humidity = weather.main.humidity;
             const message = weather.weather[0].description.toUpperCase()
             const windSpeed = Math.round(weather.wind.speed * 2.236936);
             const windDirection = weather.wind.deg
             const city = weather.name
             const icon = weather.weather[0].icon
+            console.log(weather);
             this.setState({
                 temp: tempInF,
-                highTemp: maxInF,
-                lowTemp: minInF,
+                feelsLike: feelsLike,
+                pressure: pressure,
                 humidity: humidity,
                 windSpeed: windSpeed,
                 windDirection: windDirection,
@@ -101,8 +102,8 @@ class App extends Component {
                                 lat={this.state.lat}
                                 lon={this.state.lon}
                                 temp={this.state.temp}
-                                highTemp={this.state.highTemp}
-                                lowTemp={this.state.lowTemp}
+                                feelsLike={this.state.feelsLike}
+                                pressure={this.state.pressure}
                                 humidity={this.state.humidity}
                                 windSpeed={this.state.windSpeed}
                                 windDirection={this.state.windDirection}
