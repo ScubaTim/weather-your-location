@@ -3,24 +3,22 @@ import { Row, Col, Table } from 'reactstrap';
 import './WeatherDisplay.scss';
 
 const WeatherDisplay = (props) => {
-    console.log(props);
     return (
         <div className="main-display">
-            <div className="pb-2 mx-4">
+            <div className="mx-4">
                 <Row>
                     <Col>
                         <h1 className="display-font">Current Weather</h1>
-                        <p className="small-text text-center">For:</p>
-                        <p className="small-text text-center">Longitude: {props.lon}  Latitude: {props.lat} </p>
+                        <p className="small-text text-center mb-3">Longitude: {props.lon}  Latitude: {props.lat} </p>
                     </Col>
                 </Row>
-                <Row className="text-center mt-3 mb-2">
+                <Row className="text-center my-2">
                     <Col>
-                        <h5 className="display-font light-text">It is currently raining outside.</h5>
+                        <strong className="light-text display-font">CURRENT CONDITIONS: {props.message}</strong>
                     </Col>
                 </Row>
-                <Row className="mx-2">
-                    <Col>
+                <Row>
+                    <Col className="ml-3">
                         <Table className="ml-3" size="sm" borderless>
                             <thead>
                             </thead>
@@ -38,9 +36,8 @@ const WeatherDisplay = (props) => {
                     </Col>
                 </Row>
             </div>
-
         </div>
-    )
+    );
 }
 
 export default WeatherDisplay;

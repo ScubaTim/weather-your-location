@@ -4,7 +4,7 @@ import './LandingButton.scss';
 
 const LandingButton = (props) => {
     return (
-        <Button
+        <Button 
             onClick={props.handleLaunch}
             className="landing-button"
             color="primary"
