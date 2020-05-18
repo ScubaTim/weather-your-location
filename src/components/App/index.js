@@ -20,19 +20,15 @@ class App extends Component {
         );
     }
 
-    getWeather = /*async*/ () => {
-        //Get Weather data from API with coordinates from state
+    getWeather = async () => {
         //const response = await fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&appid=0317b02bce728aa1f3b87d5d6ad88a5d`).catch(err => console.log(err));
         //const weather = await response.json()
-        // Set current tempurature: weather.main.temp is the current tempurature in Kelvin, convert it to Farenheit
         //const tempInF = Math.floor(weather.main.temp * 9 / 5 - 459.67);
-        //Update the state with current Tempurature in F
-        this.setState({ temp: '50', highTemp: '100', lowTemp: '100', percip: '75%' })
+        this.setState({ temp: 'temp', highTemp: '100', lowTemp: '100', percip: '75%' })
     }
 
     handleLaunch = () => {
         this.getWeather();
-
     }
 
     renderContent = () => {
@@ -46,6 +42,17 @@ class App extends Component {
                     </Col>
                 </Row>
             );
+
+        if (!this.state.lat) {
+            return (
+                <Row className="text-center">
+                    <Col>
+                        <h1 style={{ marginTop: '25vh' }}>Loading...</h1>
+                    </Col>
+                </Row>
+            )
+        }
+
         return (
             <div>
                 <Row>
