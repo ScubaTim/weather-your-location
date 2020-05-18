@@ -1,11 +1,12 @@
 import React from 'react';
-import { Row, Col, Table, Button } from 'reactstrap';
+import { Row, Col, Table } from 'reactstrap';
 import './WeatherDisplay.scss';
 
 const WeatherDisplay = (props) => {
+    console.log(props);
     return (
         <div className="main-display">
-            <div className="my-1 pb-2 mx-4">
+            <div className="pb-2 mx-4">
                 <Row>
                     <Col>
                         <h1 className="display-font">Current Weather</h1>
@@ -18,29 +19,22 @@ const WeatherDisplay = (props) => {
                         <h5 className="display-font light-text">It is currently raining outside.</h5>
                     </Col>
                 </Row>
-                <Row className="mx-2 px-5">
+                <Row className="mx-2">
                     <Col>
-                        <Table size="sm" borderless>
+                        <Table className="ml-3" size="sm" borderless>
                             <thead>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td><strong>Temperature:</strong> {props.temp}&#176;F</td>
-                                    <td><strong>High:</strong> 90&#176;F</td>
+                                    <td><strong>High:</strong> {props.highTemp}&#176;F</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Percipitation:</strong> 50%</td>
-                                    <td><strong>Low:</strong> 20&#176;F</td>
+                                    <td><strong>Percipitation:</strong> {props.percip}</td>
+                                    <td><strong>Low:</strong> {props.lowTemp}&#176;F</td>
                                 </tr>
                             </tbody>
                         </Table>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col className="text-center">
-                        <Button
-                            onClick={props.onClick}
-                        >Get Weather</Button>
                     </Col>
                 </Row>
             </div>

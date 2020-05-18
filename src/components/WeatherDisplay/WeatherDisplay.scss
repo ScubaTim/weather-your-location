@@ -24,12 +24,16 @@ h1 {
     margin: 0;
 }
 
+.testborder {
+     border: 1px solid red;
+}
+
 .main-display {
     background-color: rgb(255, 255, 255);
-    width: 480px;
-    margin: 12vh auto;
+    width: 500px;
+    margin: 25vh auto;
+    padding: 1.25rem;
     border: 3px solid $black;
-    padding: 1rem;
     border-radius: 18px;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.08);
 }
