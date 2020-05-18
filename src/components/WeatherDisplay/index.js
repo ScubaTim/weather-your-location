@@ -30,7 +30,7 @@ const WeatherDisplay = (props) => {
                                     <td><strong>High:</strong> {props.highTemp}&#176;F</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Percipitation:</strong> {props.percip}</td>
+                                    <td><strong>Humidity:</strong> {props.humidity}%</td>
                                     <td><strong>Low:</strong> {props.lowTemp}&#176;F</td>
                                 </tr>
                             </tbody>

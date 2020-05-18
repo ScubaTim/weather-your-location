@@ -11,7 +11,7 @@ class App extends Component {
         temp: null,
         highTemp: null,
         lowTemp: null,
-        percip: ''
+        humidity: ''
     }
 
     componentDidMount() {
@@ -21,10 +21,16 @@ class App extends Component {
     }
 
     getWeather = async () => {
-        //const response = await fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&appid=0317b02bce728aa1f3b87d5d6ad88a5d`).catch(err => console.log(err));
-        //const weather = await response.json()
-        //const tempInF = Math.floor(weather.main.temp * 9 / 5 - 459.67);
-        this.setState({ temp: 'temp', highTemp: '100', lowTemp: '100', percip: '75%' })
+        if (this.state.lat) {
+            const response = await fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&appid=0317b02bce728aa1f3b87d5d6ad88a5d`).catch(err => console.log(err));
+            const weather = await response.json()
+            console.log(weather);
+            const tempInF = Math.floor(weather.main.temp * 9 / 5 - 459.67);
+            const maxInF = Math.floor(weather.main.temp_max * 9 / 5 - 459.67);
+            const minInF = Math.floor(weather.main.temp_min * 9 / 5 - 459.67);
+            const humidity = Math.floor(weather.main.humidity)
+            this.setState({ temp: tempInF, highTemp: maxInF, lowTemp: minInF, humidity: humidity })
+        }
     }
 
     handleLaunch = () => {
@@ -63,7 +69,7 @@ class App extends Component {
                             temp={this.state.temp}
                             highTemp={this.state.highTemp}
                             lowTemp={this.state.lowTemp}
-                            percip={this.state.percip}
+                            humidity={this.state.humidity}
                         />
                     </Col>
                 </Row>
